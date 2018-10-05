@@ -18,7 +18,7 @@
     <string name="Email">Email</string>
     <string name="Telefono">Teléfono</string>
     <string name="Departamento">Departamento</string>
-    <string name="Queja">Explicación de la Queja</string>
+    <string name="Queja">Motivo Queja</string>
     <string name="Imagen">Adjunte Imagen</string>
 
     <string name="captura">Captura</string>
