@@ -75,5 +75,6 @@
     <!--Apartados de nuestro menuprincipalusuario -->
 
     <string name="New_formulary">Nueva Solicitud</string>
+    <string name="My_events">Mis Solicitudes</string>
 
 </resources>

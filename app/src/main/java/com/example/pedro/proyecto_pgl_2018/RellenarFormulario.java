@@ -101,14 +101,16 @@ public class RellenarFormulario extends AppCompatActivity  {
        //     }
        // });
 
-      //  Button CancelarFormulario = (Button) findViewById(R.id.CancelarFormulario);
-      //  CancelarFormulario.setOnClickListener(new View.OnClickListener() {
-       //     @Override
-       //     public void onClick(View view) {
-       //         onBackPressed();
-//
-       //     }
-    //    });
+        CancelarFormulario = (Button) findViewById(R.id.CancelarFormulario);
+
+        Button CancelarFormulario = (Button) findViewById(R.id.CancelarFormulario);
+        CancelarFormulario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+
+            }
+        });
 
     }
 

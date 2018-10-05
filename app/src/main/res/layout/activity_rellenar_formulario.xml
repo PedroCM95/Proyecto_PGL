@@ -28,7 +28,7 @@
                         android:id="@+id/editTextNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:layout_marginLeft="5dp"
                         android:hint="@string/Nombre"
                         android:inputType="textCapWords" />
 
@@ -42,7 +42,9 @@
                             android:id="@+id/editTextDNI"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/DNI" />
+                            android:hint="@string/DNI"
+                            android:layout_marginLeft="5dp"
+                            android:maxLength="9"/>
 
                  </android.support.design.widget.TextInputLayout>
 
@@ -56,6 +58,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/Email"
+                            android:layout_marginLeft="5dp"
                             android:inputType="textEmailAddress" />
 
                  </android.support.design.widget.TextInputLayout>
@@ -69,7 +72,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/Telefono"
-                            android:inputType="number" />
+                            android:inputType="phone"
+                             android:layout_marginLeft="5dp"
+                            android:maxLength="9"/>
 
                  </android.support.design.widget.TextInputLayout>
 
@@ -79,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/Departamento"
 
         />
@@ -111,7 +117,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
         android:hint="@string/city_planning"
 
 
@@ -120,20 +125,30 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
 
         <EditText
             android:id="@+id/editTextQueja"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/Queja"
+            android:layout_marginLeft="5dp"
+            android:maxLength="150"
+            android:inputType="textMultiLine"
+            android:lines="5"
 
-            android:inputType="textCapWords"
-            android:maxLength="200" />
+
+            />
 
     </android.support.design.widget.TextInputLayout>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Imagen"
+        android:layout_margin="10dp"
+       />
     <ImageView
         android:id="@+id/imagen_formulario"
         android:layout_width="100dp"
@@ -171,8 +186,6 @@
 
             />
     </LinearLayout>
-        </LinearLayout>
-
-    </ScrollView>
-
+   </LinearLayout>
+  </ScrollView>
 </LinearLayout>
