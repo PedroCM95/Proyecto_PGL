@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Proyecto_PGL_2018</string>
+    <string name="app_name">AGENT FROM EVENT</string>
+    <string name="app_name_login">LOGIN</string>
+    <string name="app_name_solicity">REQUEST</string>
+
     <string name="Inicio_Bienvenida">Bienvenido al Gestor de Incidencia de Gran Canaria</string>
     <string name="countrie">Seleccione su municipio :</string>
     <string name="Inicio_Formulario">Bienvenido al Gestor de Incidencia del Municipio de</string>
@@ -17,6 +20,8 @@
     <string name="Departamento">Departamento</string>
     <string name="Queja">Explicación de la Queja</string>
     <string name="Imagen">Adjunte Imagen</string>
+
+    <string name="captura">Captura</string>
 
 
     <!-- Botones  -->
