@@ -47,9 +47,9 @@
 
     <!--Departamentos -->
 
-    <string name="Science">Concejería de Cultura</string>
-    <string name="city_planning">Urbanismo</string>
-    <string name="education">Educación</string>
+    <string name="Science">Consejería de Cultura</string>
+    <string name="city_planning">Consejería de Urbanismo</string>
+    <string name="education">Consejería de Educación</string>
     <string name="title_activity_login__principal">Sign in</string>
 
     <!-- Strings related to login -->
