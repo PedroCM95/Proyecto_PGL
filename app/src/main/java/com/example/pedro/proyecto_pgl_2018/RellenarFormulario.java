@@ -34,21 +34,15 @@ import java.util.Map;
 
 public class RellenarFormulario extends AppCompatActivity  {
 
-    RellenarFormulario contexto;
 
-    EditText editTextNombre;
-    EditText editTextDNI;
-    EditText editTextEmail;
-    EditText editTextTelefono;
-    EditText editTextQueja;
+
+
+    EditText editTextNombre, editTextDNI, editTextEmail, editTextTelefono, editTextQueja;
     CheckBox checkboxEducation,checkboxScience, checkboxUrbanismy ;
 
     Button EnviarFormulario, CancelarFormulario, button_captura;
     ImageView imagen_formulario;
 
-    Intent i;
-    final static int costante = 0;
-    Bitmap bmp;
 
     private final String CARPETA_RAIZ="misImagenesSolicitud/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"misFotos";
@@ -56,9 +50,8 @@ public class RellenarFormulario extends AppCompatActivity  {
     final int COD_SELECCIONA = 10;
     final int COD_FOTO= 20;
 
-    private MagicalPermissions magicalPermissions;
-    private MagicalCamera magicalCamera;
-    private final static int RESIZE_PHOTO_PIXELS_PERCENTAGE = 50;
+
+
 
 
     String path;
@@ -72,6 +65,7 @@ public class RellenarFormulario extends AppCompatActivity  {
         imagen_formulario =(ImageView) findViewById(R.id.imagen_formulario);
         button_captura = (Button) findViewById(R.id.button_captura);
 
+
         button_captura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,26 +74,26 @@ public class RellenarFormulario extends AppCompatActivity  {
         });
 
 
-        //editTextNombre = (EditText) findViewById(R.id.editTextNombre);
-        //editTextDNI = (EditText) findViewById(R.id.editTextDNI);
-        //editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-       // editTextTelefono = (EditText) findViewById(R.id.editTextTelefono);
-       // editTextQueja = (EditText) findViewById(R.id.editTextQueja);
+        editTextNombre = (EditText) findViewById(R.id.editTextNombre);
+        editTextDNI = (EditText) findViewById(R.id.editTextDNI);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editTextTelefono = (EditText) findViewById(R.id.editTextTelefono);
+        editTextQueja = (EditText) findViewById(R.id.editTextQueja);
 
 
-       // checkboxScience = (CheckBox) findViewById(R.id.checkboxScience);
-       // checkboxEducation = (CheckBox) findViewById(R.id.checkboxEducation);
-        //checkboxUrbanismy = (CheckBox) findViewById(R.id.checkboxUrbanismy);
+        checkboxScience = (CheckBox) findViewById(R.id.checkboxScience);
+        checkboxEducation = (CheckBox) findViewById(R.id.checkboxEducation);
+        checkboxUrbanismy = (CheckBox) findViewById(R.id.checkboxUrbanismy);
 
-        //Button EnviarFormulario = (Button) findViewById(R.id.EnviarFormulario);
-        //EnviarFormulario.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-          //  public void onClick(View view) {
+        Button EnviarFormulario = (Button) findViewById(R.id.EnviarFormulario);
+        EnviarFormulario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                enviar();
 
-
-       //     }
-       // });
+            }
+        });
 
         CancelarFormulario = (Button) findViewById(R.id.CancelarFormulario);
 
@@ -124,7 +118,7 @@ public class RellenarFormulario extends AppCompatActivity  {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (opciones[i].equals("Sacar Foto")){
-                        tomarFotografia();
+                      tomarFotografia();
                 }else{
                     if (opciones[i].equals("Cargar Imagen")){
                         Intent intent=new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -136,6 +130,7 @@ public class RellenarFormulario extends AppCompatActivity  {
                 }
             }
         });
+
         alertOpciones.show();
 
     }
@@ -171,22 +166,23 @@ public class RellenarFormulario extends AppCompatActivity  {
         {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
         }
+
         startActivityForResult(intent,COD_FOTO);
 
     }
 
 
-    @Override
+   // @Override
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,  @NonNull int[] grantResults){
+   // public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,  @NonNull int[] grantResults){
 
-       Map<String, Boolean> map = magicalPermissions.permissionResult(requestCode, permissions, grantResults);
-       for (String permission : map.keySet()){
+    //   Map<String, Boolean> map = magicalPermissions.permissionResult(requestCode, permissions, grantResults);
+    //   for (String permission : map.keySet()){
 
-           Log.d("PERMISSIONS", permission + "was:" + map.get(permission));
-       }
+     //      Log.d("PERMISSIONS", permission + "was:" + map.get(permission));
+   //    }
 
-    }
+   // }
 
     @Override
 
@@ -224,7 +220,8 @@ public class RellenarFormulario extends AppCompatActivity  {
 
 
 
-    private void enviar(){
+    private void enviar() {
+
 
         editTextNombre.setError(null);
         editTextDNI.setError(null);
@@ -232,13 +229,15 @@ public class RellenarFormulario extends AppCompatActivity  {
         editTextTelefono.setError(null);
         editTextQueja.setError(null);
 
-
         String nombre = editTextNombre.getText().toString().trim();
         String dni = editTextDNI.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
-        String telefono = editTextTelefono.getText().toString().trim();
+        //String telefono = editTextTelefono.getText().toString().trim();
         String queja = editTextQueja.getText().toString().trim();
 
+        //String checkbox_1 = checkboxEducation.getText().toString();
+        //String checkbox_2 = checkboxScience.getText().toString();
+       // String checkbox_3 = checkboxUrbanismy.getText().toString();
 
         if(checkboxScience.isChecked()){
 
@@ -280,23 +279,23 @@ public class RellenarFormulario extends AppCompatActivity  {
 
 
 
-        int dniint = Integer.parseInt(dni);
+      //  int dniint = Integer.parseInt(dni);
 
-        if(dniint<9 || dniint>10){
+      //  if(dniint != 9){
 
-            editTextDNI.setError(getString(R.string.error_valor_emtre_0_9));
-            editTextDNI.requestFocus();
-            return;
-        }
+        //    editTextDNI.setError(getString(R.string.error_valor_emtre_0_9));
+       //     editTextDNI.requestFocus();
+       //     return;
+       // }
 
-        int tlf = Integer.parseInt(telefono);
+      //  int tlf = Integer.parseInt(telefono);
 
-        if(tlf<9 || tlf>10){
+        //if(tlf<9 || tlf>10){
 
-            editTextTelefono.setError(getString(R.string.error_valor_emtre_0_9));
-            editTextTelefono.requestFocus();
-            return;
-        }
+        //    editTextTelefono.setError(getString(R.string.error_valor_emtre_0_9));
+        //    editTextTelefono.requestFocus();
+            //return;
+       // }
 
         Toast.makeText(getApplicationContext(),"Se ha enviado su solicitud correctamente", Toast.LENGTH_LONG).show();
     }

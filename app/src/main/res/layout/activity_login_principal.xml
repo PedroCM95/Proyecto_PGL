@@ -20,6 +20,9 @@
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
         android:gravity="center_horizontal"
+        android:textColorHint="@color/colorazul"
+
+
 
          />
 
@@ -43,9 +46,10 @@
         android:background="#11000000"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapCharacters"
         android:hint="@string/Login_name"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+    />
 
     <EditText
         android:id="@+id/editText_password"

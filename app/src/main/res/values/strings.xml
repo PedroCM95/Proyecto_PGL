@@ -5,7 +5,7 @@
 
     <string name="Inicio_Bienvenida">Bienvenido al Gestor de Incidencia de Gran Canaria</string>
     <string name="countrie">Seleccione su municipio :</string>
-    <string name="Inicio_Formulario">Bienvenido al Gestor de Incidencia del Municipio de</string>
+    <string name="Inicio_Formulario">BIENVENIDO AL GESTOR DE INCIDENCIAS DEL MUNICIPIO DE</string>
 
 
     <string name="formulario" size="3">Formulario</string>
@@ -17,7 +17,7 @@
     <string name="DNI">DNI</string>
     <string name="Email">Email</string>
     <string name="Telefono">Teléfono</string>
-    <string name="Departamento">Departamento</string>
+    <string name="Departamento">Departamentos</string>
     <string name="Queja">Motivo Queja</string>
     <string name="Imagen">Adjunte Imagen</string>
 
@@ -76,5 +76,6 @@
 
     <string name="New_formulary">Nueva Solicitud</string>
     <string name="My_events">Mis Solicitudes</string>
+
 
 </resources>

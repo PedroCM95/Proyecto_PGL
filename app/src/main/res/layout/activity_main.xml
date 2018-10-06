@@ -17,6 +17,8 @@
         android:layout_marginTop="10dp"
         android:hint="@string/Inicio_Bienvenida"
         android:id="@+id/textView_Start"
+        android:gravity="center_horizontal"
+        android:textColorHint="@color/colorazul"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
 
         />
@@ -24,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textColorHint="@color/colorazul"
         android:layout_below="@+id/textView_Start"
         android:hint="@string/countrie"
         android:layout_marginLeft="22dp"

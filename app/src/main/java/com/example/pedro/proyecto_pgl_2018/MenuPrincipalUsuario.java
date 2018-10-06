@@ -14,12 +14,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EdgeEffect;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MenuPrincipalUsuario extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     MenuPrincipalUsuario contexto;
     Button button_formulary;
+
+    TextView User;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,13 @@ public class MenuPrincipalUsuario extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        User = (TextView) findViewById(R.id.Name_User);
+        String Nombre_User = getIntent().getExtras().getString("User");
+        User.setText("BIENVENIDO " + Nombre_User + " A SU PORTAL DE INCIDENCIAS"); // Nos sirve para al valor pasarlo mostrarlo
+
+
     }
 
     @Override
