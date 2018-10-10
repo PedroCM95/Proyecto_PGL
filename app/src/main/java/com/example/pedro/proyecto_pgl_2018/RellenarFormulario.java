@@ -49,11 +49,6 @@ public class RellenarFormulario extends AppCompatActivity  {
 
     final int COD_SELECCIONA = 10;
     final int COD_FOTO= 20;
-
-
-
-
-
     String path;
 
 
@@ -61,26 +56,21 @@ public class RellenarFormulario extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rellenar_formulario);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        imagen_formulario =(ImageView) findViewById(R.id.imagen_formulario);
+        imagen_formulario =(ImageView) findViewById(R.id.imagen_captura);
         button_captura = (Button) findViewById(R.id.button_captura);
-
-
         button_captura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cargarImagen();
             }
         });
-
-
         editTextNombre = (EditText) findViewById(R.id.editTextNombre);
         editTextDNI = (EditText) findViewById(R.id.editTextDNI);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextTelefono = (EditText) findViewById(R.id.editTextTelefono);
         editTextQueja = (EditText) findViewById(R.id.editTextQueja);
-
-
         checkboxScience = (CheckBox) findViewById(R.id.checkboxScience);
         checkboxEducation = (CheckBox) findViewById(R.id.checkboxEducation);
         checkboxUrbanismy = (CheckBox) findViewById(R.id.checkboxUrbanismy);
@@ -89,39 +79,28 @@ public class RellenarFormulario extends AppCompatActivity  {
         EnviarFormulario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 enviar();
 
             }
         });
-
-        CancelarFormulario = (Button) findViewById(R.id.CancelarFormulario);
-
-        Button CancelarFormulario = (Button) findViewById(R.id.CancelarFormulario);
-        CancelarFormulario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-
-            }
-        });
-
     }
 
 
     private void cargarImagen() {
 
-        final CharSequence[] opciones={"Sacar Foto","Cargar Imagen","Cancelar"};
-        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(RellenarFormulario.this);
+        final CharSequence[] opciones = {"Sacar Foto","Cargar Imagen","Cancelar"};
+        final AlertDialog.Builder alertOpciones = new AlertDialog.Builder(RellenarFormulario.this);
         alertOpciones.setTitle("Seleccione una Opción");
         alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (opciones[i].equals("Sacar Foto")){
+
                       tomarFotografia();
                 }else{
+
                     if (opciones[i].equals("Cargar Imagen")){
-                        Intent intent=new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         intent.setType("image/");
                         startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicación"),COD_SELECCIONA);
                     }else{
@@ -137,7 +116,7 @@ public class RellenarFormulario extends AppCompatActivity  {
 
     private void tomarFotografia(){
 
-        File fileImagen= new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
+        File fileImagen = new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
         boolean isCreada = fileImagen.exists();
         String nombreImagen = "";
 
@@ -149,18 +128,18 @@ public class RellenarFormulario extends AppCompatActivity  {
 
         if (isCreada==true){
 
-            nombreImagen = (System.currentTimeMillis()/1000)+".jpg";
+            nombreImagen = (System.currentTimeMillis()/100)+".jpg";
         }
 
-         path= Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
+        path= Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
 
         File imagen = new File(path);
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
         {
-            String authorities=getApplicationContext().getPackageName()+".provider";
-            Uri imageUri=FileProvider.getUriForFile(this,authorities,imagen);
+            String authorities = getApplicationContext().getPackageName()+".provider";
+            Uri imageUri = FileProvider.getUriForFile(this,authorities,imagen);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         }else
         {
@@ -186,7 +165,7 @@ public class RellenarFormulario extends AppCompatActivity  {
 
     @Override
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
 
         super.onActivityResult(requestCode,resultCode, data);
 
@@ -195,7 +174,7 @@ public class RellenarFormulario extends AppCompatActivity  {
             switch (requestCode){
 
                 case COD_SELECCIONA:
-                    Uri miPath=data.getData();
+                    Uri miPath = data.getData();
                     imagen_formulario.setImageURI(miPath);
                     break;
 

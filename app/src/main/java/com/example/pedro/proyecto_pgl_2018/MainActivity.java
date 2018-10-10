@@ -12,7 +12,7 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity  {
 
     Activity contexto;
-    Button buttonprincipal;
+    Button button_principal;
     Spinner lista;
     ArrayAdapter<String> adaptador;
     String[] datos = {"Las Palmas de Gran Canaria", "Telde", "Agaete", "Agüimes", "Artenara", "Arucas", "Firgas", "Gáldar", "Aldea de San Nicolás", "Mogán", "Moya", "San Bartolomé de Tirajana"
@@ -26,13 +26,11 @@ public class MainActivity extends AppCompatActivity  {
 
             contexto = this;
 
-            Button button_principal = (Button) findViewById(R.id.button_principal);
+            button_principal = (Button) findViewById(R.id.button_principal);
             lista = (Spinner) findViewById(R.id.spinner_lista);
-
 
             ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos);
             lista.setAdapter(adaptador);
-
 
             button_principal.setOnClickListener(new View.OnClickListener() {
 
@@ -40,14 +38,10 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
 
                 Intent intent = new Intent(contexto, LoginPrincipal.class);
-
                 String municipality = lista.getSelectedItem().toString().trim();
                 intent.putExtra("municipality", municipality);
 
                 startActivity(intent);
-
-
-
                 }
             });
 

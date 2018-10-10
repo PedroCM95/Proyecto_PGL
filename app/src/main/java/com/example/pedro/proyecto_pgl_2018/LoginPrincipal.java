@@ -15,24 +15,18 @@ public class LoginPrincipal extends AppCompatActivity {
         LoginPrincipal contexto;
         TextView Countrie;
         CardView Boton_Login;
-
         EditText editText_Nombre_Login, editText_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_principal);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         contexto = this;
-
         Countrie = (TextView) findViewById(R.id.TextBienvenida);
-
         editText_Nombre_Login = (EditText) findViewById(R.id.editText_Nombre_Login);
         editText_password =(EditText) findViewById(R.id.editText_password);
-
         Boton_Login = (CardView) findViewById(R.id.Boton_Login);
-
-
 
         Boton_Login.setOnClickListener(new View.OnClickListener() {
 
@@ -43,7 +37,6 @@ public class LoginPrincipal extends AppCompatActivity {
 
             }
         });
-
 
         String municipality = getIntent().getExtras().getString("municipality").trim();
         Countrie.setText(municipality); // Nos sirve para al valor pasarlo mostrarlo
@@ -73,7 +66,6 @@ public class LoginPrincipal extends AppCompatActivity {
 
             String Nombre_User = editText_Nombre_Login.getText().toString().trim();
             intent.putExtra("User", Nombre_User); //Toast.makeText(this,"Debes ingresar tu usuario", Toast.LENGTH_SHORT).show();
-
 
         startActivity(intent);
     }

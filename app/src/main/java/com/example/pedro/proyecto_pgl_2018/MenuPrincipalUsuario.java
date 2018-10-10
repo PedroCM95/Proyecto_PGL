@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class MenuPrincipalUsuario extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    MenuPrincipalUsuario contexto;
+
     Button button_formulary;
 
     TextView User;
@@ -32,6 +32,7 @@ public class MenuPrincipalUsuario extends AppCompatActivity
         setContentView(R.layout.activity_menu_principal_usuario);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         Button button_formulary = (Button) findViewById(R.id.button_formulary);
@@ -62,9 +63,9 @@ public class MenuPrincipalUsuario extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        User = (TextView) findViewById(R.id.Name_User);
-        String Nombre_User = getIntent().getExtras().getString("User");
-        User.setText("BIENVENIDO " + Nombre_User + " A SU PORTAL DE INCIDENCIAS"); // Nos sirve para al valor pasarlo mostrarlo
+       // User = (TextView) findViewById(R.id.Name_User);
+       // String Nombre_User = getIntent().getExtras().getString("User");
+       // User.setText("BIENVENIDO " + Nombre_User + " A SU PORTAL DE INCIDENCIAS"); // Nos sirve para al valor pasarlo mostrarlo
 
 
     }
@@ -108,12 +109,18 @@ public class MenuPrincipalUsuario extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.profile) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            Intent intent =  new Intent(getApplicationContext(), MenuSegundarioUsuario.class);
+            startActivity(intent);
+
+        } else if (id == R.id.event) {
+            Intent intent =  new Intent(getApplicationContext(), RellenarFormulario.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.settings) {
+            Intent intent =  new Intent(getApplicationContext(), MenuSegundarioUsuario.class); //Preguntar como ir un fragmento exacto
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
