@@ -28,29 +28,21 @@ import android.widget.Toast;
 import com.frosquivel.magicalcamera.MagicalCamera;
 import com.frosquivel.magicalcamera.MagicalPermissions;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.Map;
 
 
 public class RellenarFormulario extends AppCompatActivity  {
 
-
-
-
     EditText editTextNombre, editTextDNI, editTextEmail, editTextTelefono, editTextQueja;
     CheckBox checkboxEducation,checkboxScience, checkboxUrbanismy ;
+    Button EnviarFormulario, button_captura;
+    ImageView picture;
 
-    Button EnviarFormulario, CancelarFormulario, button_captura;
-    ImageView imagen_formulario;
-
-
-    private final String CARPETA_RAIZ="misImagenesSolicitud/";
-    private final String RUTA_IMAGEN=CARPETA_RAIZ+"misFotos";
-
-    final int COD_SELECCIONA = 10;
-    final int COD_FOTO= 20;
-    String path;
-
+    final int COD_SELECCIONA = 9999;
+    public static final int CAMERA_REQUEST = 9999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +50,7 @@ public class RellenarFormulario extends AppCompatActivity  {
         setContentView(R.layout.activity_rellenar_formulario);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        imagen_formulario =(ImageView) findViewById(R.id.imagen_captura);
+        picture =(ImageView) findViewById(R.id.picture);
         button_captura = (Button) findViewById(R.id.button_captura);
         button_captura.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +63,7 @@ public class RellenarFormulario extends AppCompatActivity  {
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextTelefono = (EditText) findViewById(R.id.editTextTelefono);
         editTextQueja = (EditText) findViewById(R.id.editTextQueja);
+
         checkboxScience = (CheckBox) findViewById(R.id.checkboxScience);
         checkboxEducation = (CheckBox) findViewById(R.id.checkboxEducation);
         checkboxUrbanismy = (CheckBox) findViewById(R.id.checkboxUrbanismy);
@@ -100,9 +93,9 @@ public class RellenarFormulario extends AppCompatActivity  {
                 }else{
 
                     if (opciones[i].equals("Cargar Imagen")){
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        intent.setType("image/");
-                        startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicación"),COD_SELECCIONA);
+                       Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                       intent.setType("image/");
+                       startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicación"),COD_SELECCIONA);
                     }else{
                         dialogInterface.dismiss();
                     }
@@ -111,93 +104,28 @@ public class RellenarFormulario extends AppCompatActivity  {
         });
 
         alertOpciones.show();
-
     }
 
     private void tomarFotografia(){
 
-        File fileImagen = new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
-        boolean isCreada = fileImagen.exists();
-        String nombreImagen = "";
-
-        if(isCreada==false){
-
-            isCreada=fileImagen.mkdirs();
-
-        }
-
-        if (isCreada==true){
-
-            nombreImagen = (System.currentTimeMillis()/100)+".jpg";
-        }
-
-        path= Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
-
-        File imagen = new File(path);
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
-        {
-            String authorities = getApplicationContext().getPackageName()+".provider";
-            Uri imageUri = FileProvider.getUriForFile(this,authorities,imagen);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        }else
-        {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
-        }
-
-        startActivityForResult(intent,COD_FOTO);
+        startActivityForResult(intent,CAMERA_REQUEST);
 
     }
-
-
-   // @Override
-
-   // public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,  @NonNull int[] grantResults){
-
-    //   Map<String, Boolean> map = magicalPermissions.permissionResult(requestCode, permissions, grantResults);
-    //   for (String permission : map.keySet()){
-
-     //      Log.d("PERMISSIONS", permission + "was:" + map.get(permission));
-   //    }
-
-   // }
 
     @Override
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        super.onActivityResult(requestCode,resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode==RESULT_OK){
+        if (requestCode == CAMERA_REQUEST) {
 
-            switch (requestCode){
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            picture.setImageBitmap(bitmap);
 
-                case COD_SELECCIONA:
-                    Uri miPath = data.getData();
-                    imagen_formulario.setImageURI(miPath);
-                    break;
-
-                case COD_FOTO:
-
-                    MediaScannerConnection.scanFile(this, new String[]{path}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String s, Uri uri) {
-                                    Log.i("Ruta de Almacenamiento", "Path:" + path);
-                                }
-                            });
-
-                    Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    imagen_formulario.setImageBitmap(bitmap);
-
-                    break;
-
-            }
         }
     }
-
-
 
     private void enviar() {
 
@@ -207,25 +135,40 @@ public class RellenarFormulario extends AppCompatActivity  {
         editTextEmail.setError(null);
         editTextTelefono.setError(null);
         editTextQueja.setError(null);
+        checkboxUrbanismy.setError(null);
+        checkboxScience.setError(null);
+        checkboxEducation.setError(null);
+
+
 
         String nombre = editTextNombre.getText().toString().trim();
         String dni = editTextDNI.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
-        //String telefono = editTextTelefono.getText().toString().trim();
+        String telefono = editTextTelefono.getText().toString().trim();
         String queja = editTextQueja.getText().toString().trim();
 
-        //String checkbox_1 = checkboxEducation.getText().toString();
-        //String checkbox_2 = checkboxScience.getText().toString();
-       // String checkbox_3 = checkboxUrbanismy.getText().toString();
+        String urbanismy = checkboxUrbanismy.getText().toString();
+        String Science = checkboxScience.getText().toString();
+        String Education = checkboxEducation.getText().toString();
 
-        if(checkboxScience.isChecked()){
-
-        }else if (checkboxEducation.isChecked()){
+        if (TextUtils.isEmpty(urbanismy)){
 
 
-        }else if(checkboxUrbanismy.isChecked()){
+            checkboxScience.setError(getString(R.string.error_de_campo_obligatorio));
+            checkboxScience.requestFocus();
+            return;
 
+        }else if (checkboxEducation.isSelected()){
 
+            checkboxEducation.setError(getString(R.string.error_de_campo_obligatorio));
+            checkboxEducation.requestFocus();
+            return;
+
+        }else if (checkboxUrbanismy.isChecked()){
+
+            checkboxUrbanismy.setError(getString(R.string.error_de_campo_obligatorio));
+            checkboxUrbanismy.requestFocus();
+            return;
         }
 
         if(TextUtils.isEmpty(nombre)){
@@ -255,27 +198,12 @@ public class RellenarFormulario extends AppCompatActivity  {
             editTextQueja.requestFocus();
             return;
         }
+        if(TextUtils.isEmpty(telefono)){
 
-
-
-      //  int dniint = Integer.parseInt(dni);
-
-      //  if(dniint != 9){
-
-        //    editTextDNI.setError(getString(R.string.error_valor_emtre_0_9));
-       //     editTextDNI.requestFocus();
-       //     return;
-       // }
-
-      //  int tlf = Integer.parseInt(telefono);
-
-        //if(tlf<9 || tlf>10){
-
-        //    editTextTelefono.setError(getString(R.string.error_valor_emtre_0_9));
-        //    editTextTelefono.requestFocus();
-            //return;
-       // }
-
+            editTextQueja.setError(getString(R.string.error_de_campo_obligatorio));
+            editTextQueja.requestFocus();
+            return;
+        }
         Toast.makeText(getApplicationContext(),"Se ha enviado su solicitud correctamente", Toast.LENGTH_LONG).show();
     }
 }

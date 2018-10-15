@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuPrincipalUsuario extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,14 +93,20 @@ public class MenuPrincipalUsuario extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.preguntas_frecuentes:
+                Intent i = new Intent(getApplicationContext(), Preguntas_Frecuentes.class);
+                startActivity(i);
+                break;
+            case R.id.configuracion:
+                Intent intent = new Intent(getApplicationContext(), ConfiguracionUsuario.class);
+                startActivity(intent);
+                break;
+            case R.id.cerrar_sesion:
+                Toast.makeText(getApplicationContext(),"Cerrando Sesión ", Toast.LENGTH_SHORT).show();
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
+        return  true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

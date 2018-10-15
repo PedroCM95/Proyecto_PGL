@@ -73,7 +73,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/Telefono"
                             android:inputType="phone"
-                             android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="5dp"
                             android:maxLength="9"/>
 
                  </android.support.design.widget.TextInputLayout>
@@ -150,7 +150,7 @@
         android:layout_margin="10dp"
        />
     <ImageView
-        android:id="@+id/imagen_captura"
+        android:id="@+id/picture"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/ic_menu_camera"

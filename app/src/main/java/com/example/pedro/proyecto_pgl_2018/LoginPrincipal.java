@@ -29,12 +29,9 @@ public class LoginPrincipal extends AppCompatActivity {
         Boton_Login = (CardView) findViewById(R.id.Boton_Login);
 
         Boton_Login.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
                 Login();
-
             }
         });
 
@@ -46,27 +43,19 @@ public class LoginPrincipal extends AppCompatActivity {
 
         String nombre = editText_Nombre_Login.getText().toString().trim();
         String password = editText_password.getText().toString().trim();
-
         if(TextUtils.isEmpty(nombre)){
-
             editText_Nombre_Login.setError(getString(R.string.error_de_campo_obligatorio));
             editText_Nombre_Login.requestFocus();
             return;
         }
-
         if(TextUtils.isEmpty(password)){
-
             editText_password.setError(getString(R.string.error_de_campo_obligatorio));
             editText_password.requestFocus();
             return;
         }
-
-
         Intent intent = new Intent(contexto, MenuPrincipalUsuario.class);
-
             String Nombre_User = editText_Nombre_Login.getText().toString().trim();
             intent.putExtra("User", Nombre_User); //Toast.makeText(this,"Debes ingresar tu usuario", Toast.LENGTH_SHORT).show();
-
         startActivity(intent);
     }
 }
