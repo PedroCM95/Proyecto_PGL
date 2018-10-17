@@ -25,24 +25,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.pedro.proyecto_pgl_2018.constantes.Utilidades;
 import com.frosquivel.magicalcamera.MagicalCamera;
 import com.frosquivel.magicalcamera.MagicalPermissions;
 
 import org.w3c.dom.Text;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 
-public class RellenarFormulario extends AppCompatActivity  {
+public class RellenarFormulario extends AppCompatActivity {
 
     EditText editTextNombre, editTextDNI, editTextEmail, editTextTelefono, editTextQueja;
-    CheckBox checkboxEducation,checkboxScience, checkboxUrbanismy ;
+    CheckBox checkboxEducation, checkboxScience, checkboxUrbanismy;
     Button EnviarFormulario, button_captura;
     ImageView picture;
 
-    final int COD_SELECCIONA = 9999;
-    public static final int CAMERA_REQUEST = 9999;
+    final int COD_SELECCIONA = 1;
+    public static final int CAMERA_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class RellenarFormulario extends AppCompatActivity  {
         setContentView(R.layout.activity_rellenar_formulario);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        picture =(ImageView) findViewById(R.id.picture);
+        picture = (ImageView) findViewById(R.id.picture);
         button_captura = (Button) findViewById(R.id.button_captura);
         button_captura.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,22 +83,22 @@ public class RellenarFormulario extends AppCompatActivity  {
 
     private void cargarImagen() {
 
-        final CharSequence[] opciones = {"Sacar Foto","Cargar Imagen","Cancelar"};
+        final CharSequence[] opciones = {"Sacar Foto", "Cargar Imagen", "Cancelar"};
         final AlertDialog.Builder alertOpciones = new AlertDialog.Builder(RellenarFormulario.this);
         alertOpciones.setTitle("Seleccione una Opción");
         alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (opciones[i].equals("Sacar Foto")){
+                if (opciones[i].equals("Sacar Foto")) {
 
-                      tomarFotografia();
-                }else{
+                    tomarFotografia();
+                } else {
 
-                    if (opciones[i].equals("Cargar Imagen")){
-                       Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                       intent.setType("image/");
-                       startActivityForResult(intent.createChooser(intent,"Seleccione la Aplicación"),COD_SELECCIONA);
-                    }else{
+                    if (opciones[i].equals("Cargar Imagen")) {
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        intent.setType("image/");
+                        startActivityForResult(intent.createChooser(intent, "Seleccione la Aplicación"), COD_SELECCIONA);
+                    } else {
                         dialogInterface.dismiss();
                     }
                 }
@@ -106,10 +108,10 @@ public class RellenarFormulario extends AppCompatActivity  {
         alertOpciones.show();
     }
 
-    private void tomarFotografia(){
+    private void tomarFotografia() {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,CAMERA_REQUEST);
+        startActivityForResult(intent, CAMERA_REQUEST);
 
     }
 
@@ -117,15 +119,36 @@ public class RellenarFormulario extends AppCompatActivity  {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CAMERA_REQUEST) {
+        switch (requestCode) {
+            case CAMERA_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    picture.setImageBitmap(bitmap);
+                    try {
+                        Utilidades.storeImage(bitmap, this, "imagen.jpg");
+                    } catch (IOException e) {
+                        Toast.makeText(getApplicationContext(), "No se pudo guardar la imagen", Toast.LENGTH_LONG).show();
+                    }
+                } else {
 
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            picture.setImageBitmap(bitmap);
+                }
+                break;
+            case COD_SELECCIONA:
+                if (resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    picture.setImageURI(uri);
 
+                } else {
+
+                }
+                break;
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
 
     private void enviar() {
 
