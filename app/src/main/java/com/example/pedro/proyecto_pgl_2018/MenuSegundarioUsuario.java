@@ -1,5 +1,7 @@
 package com.example.pedro.proyecto_pgl_2018;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -30,6 +32,7 @@ public class MenuSegundarioUsuario extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
 
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -43,6 +46,7 @@ public class MenuSegundarioUsuario extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

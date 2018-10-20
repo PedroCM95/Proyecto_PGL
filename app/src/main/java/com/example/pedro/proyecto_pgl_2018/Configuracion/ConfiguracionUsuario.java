@@ -1,4 +1,4 @@
-package com.example.pedro.proyecto_pgl_2018;
+package com.example.pedro.proyecto_pgl_2018.Configuracion;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -19,6 +19,8 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+
+import com.example.pedro.proyecto_pgl_2018.R;
 
 import java.util.List;
 

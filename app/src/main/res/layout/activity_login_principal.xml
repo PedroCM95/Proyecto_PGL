@@ -15,7 +15,7 @@
         android:id="@+id/textView_Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/Inicio_Formulario"
+        android:hint="@string/Start_Formulario"
         android:layout_margin="15dp"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"

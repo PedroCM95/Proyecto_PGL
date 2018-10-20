@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">AGENT FROM EVENT</string>
+    <string name="app_name">MANAGER FROM EVENT</string>
     <string name="app_name_login">LOGIN</string>
     <string name="app_name_solicity">REQUEST</string>
-    <string name="Inicio_Bienvenida">Bienvenido al Gestor de Incidencia de Gran Canaria</string>
+    <string name="Welcome">Bienvenido al Gestor de Incidencia de Gran Canaria</string>
     <string name="countrie">Seleccione su municipio :</string>
-    <string name="Inicio_Formulario">BIENVENIDO AL GESTOR DE INCIDENCIAS DEL MUNICIPIO DE</string>
-    <string name="formulario" size="3">Formulario</string>
+    <string name="Start_Formulario">BIENVENIDO AL GESTOR DE INCIDENCIAS DEL MUNICIPIO DE</string>
+    <string name="Formulary" size="3">Formulario</string>
 
 
     <string name="navigation_drawer_open">asdasda</string>
@@ -25,25 +25,25 @@
 
     <!-- Formulario -->
 
-    <string name="Nombre">Nombre</string>
+    <string name="Name">Nombre</string>
     <string name="DNI">DNI</string>
     <string name="Email">Email</string>
     <string name="Telefono">Teléfono</string>
-    <string name="Departamento">Departamentos</string>
+    <string name="Departament">Departamentos</string>
     <string name="Queja">Motivo Queja</string>
-    <string name="Imagen">Adjunte Imagen</string>
+    <string name="Picture">Adjunte Imagen</string>
     <string name="captura">Captura</string>
 
     <!-- INFORMACION PREGUNTAS FRECUENTES  -->
 
     <string name="titulo_preguntas">PREGUNTAS FRECUENTES</string>
-    <string name="informacion">Bienvenidos a este apartado de preguntas frecuentes. Antes de comenzar las diferentes preguntas casuales que podemos tener
+    <string name="information">Bienvenidos a este apartado de preguntas frecuentes. Antes de comenzar las diferentes preguntas casuales que podemos tener
     debemos explicar el principal uso que tiene la aplicación AFV. AFV es una aplicación destinada a la queja/exposición ciudadana sobre temas que podemos tener en nuestro municipio. </string>
 
     <!-- Botones  -->
 
-    <string name="Enviar">Enviar</string>
-    <string name="Cancelar">Cancelar</string>
+    <string name="Send">Enviar</string>
+    <string name="Cancel">Cancelar</string>
     <string name="Acept">Aceptar</string>
 
     <!-- Errores -->

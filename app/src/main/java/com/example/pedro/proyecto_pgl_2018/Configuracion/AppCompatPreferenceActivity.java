@@ -1,4 +1,4 @@
-package com.example.pedro.proyecto_pgl_2018;
+package com.example.pedro.proyecto_pgl_2018.Configuracion;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

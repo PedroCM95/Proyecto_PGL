@@ -14,10 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EdgeEffect;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.pedro.proyecto_pgl_2018.Configuracion.ConfiguracionUsuario;
 
 public class MenuPrincipalUsuario extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,7 +24,7 @@ public class MenuPrincipalUsuario extends AppCompatActivity
 
     Button button_formulary;
 
-    TextView User;
+    //TextView User;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +64,8 @@ public class MenuPrincipalUsuario extends AppCompatActivity
 
 
        // User = (TextView) findViewById(R.id.Name_User);
-       // String Nombre_User = getIntent().getExtras().getString("User");
-       // User.setText("BIENVENIDO " + Nombre_User + " A SU PORTAL DE INCIDENCIAS"); // Nos sirve para al valor pasarlo mostrarlo
+        //String Nombre_User = getIntent().getExtras().getString("User");
+        //User.setText("BIENVENIDO " + Nombre_User + " A SU PORTAL DE INCIDENCIAS");
 
 
     }
@@ -102,8 +101,9 @@ public class MenuPrincipalUsuario extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), ConfiguracionUsuario.class);
                 startActivity(intent);
                 break;
-            case R.id.cerrar_sesion:
-                Toast.makeText(getApplicationContext(),"Cerrando Sesión ", Toast.LENGTH_SHORT).show();
+            case R.id.formulary:
+                Intent x = new Intent(getApplicationContext(), RellenarFormulario.class);
+                startActivity(x);
                 break;
         }
         return  true;
@@ -126,8 +126,8 @@ public class MenuPrincipalUsuario extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.settings) {
-            Intent intent =  new Intent(getApplicationContext(), MenuSegundarioUsuario.class); //Preguntar como ir un fragmento exacto
-            startActivity(intent);
+            Intent intent =  new Intent(getApplicationContext(), MenuSegundarioUsuario.class);
+            getApplication().startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 

@@ -8,6 +8,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".ManagerEventApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -46,16 +47,22 @@
                 android:value=".MenuPrincipalUsuario" />
         </activity>
         <activity
-            android:name=".ConfiguracionUsuario"
+            android:name=".Configuracion.ConfiguracionUsuario"
             android:label="@string/title_activity_configuracion_usuario"
             android:parentActivityName=".MenuPrincipalUsuario">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.pedro.proyecto_pgl_2018.MenuPrincipalUsuario" />
         </activity>
-        <activity android:name=".Preguntas_Frecuentes"
-            android:parentActivityName=".MenuPrincipalUsuario">
-        </activity>
+        <activity
+            android:name=".Preguntas_Frecuentes"
+            android:parentActivityName=".MenuPrincipalUsuario"></activity>
+
+        <provider
+            android:name=".Provider.ManagerEventsContentProvider"
+            android:authorities="com.example.pedro.proyecto_pgl_2018.Provider.ManagerEventsContentProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>

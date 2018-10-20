@@ -34,17 +34,18 @@ import org.w3c.dom.Text;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 
 public class RellenarFormulario extends AppCompatActivity {
 
     EditText editTextNombre, editTextDNI, editTextEmail, editTextTelefono, editTextQueja;
-    CheckBox checkboxEducation, checkboxScience, checkboxUrbanismy;
     Button EnviarFormulario, button_captura;
     ImageView picture;
 
     final int COD_SELECCIONA = 1;
     public static final int CAMERA_REQUEST = 2;
+    public static final String NUMEROS = "^[0-9]+$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +67,6 @@ public class RellenarFormulario extends AppCompatActivity {
         editTextTelefono = (EditText) findViewById(R.id.editTextTelefono);
         editTextQueja = (EditText) findViewById(R.id.editTextQueja);
 
-        checkboxScience = (CheckBox) findViewById(R.id.checkboxScience);
-        checkboxEducation = (CheckBox) findViewById(R.id.checkboxEducation);
-        checkboxUrbanismy = (CheckBox) findViewById(R.id.checkboxUrbanismy);
-
         Button EnviarFormulario = (Button) findViewById(R.id.EnviarFormulario);
         EnviarFormulario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +87,6 @@ public class RellenarFormulario extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (opciones[i].equals("Sacar Foto")) {
-
                     tomarFotografia();
                 } else {
 
@@ -119,7 +115,6 @@ public class RellenarFormulario extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
         switch (requestCode) {
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK) {
@@ -147,52 +142,19 @@ public class RellenarFormulario extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-
-
     private void enviar() {
-
 
         editTextNombre.setError(null);
         editTextDNI.setError(null);
         editTextEmail.setError(null);
         editTextTelefono.setError(null);
         editTextQueja.setError(null);
-        checkboxUrbanismy.setError(null);
-        checkboxScience.setError(null);
-        checkboxEducation.setError(null);
-
-
 
         String nombre = editTextNombre.getText().toString().trim();
         String dni = editTextDNI.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String telefono = editTextTelefono.getText().toString().trim();
         String queja = editTextQueja.getText().toString().trim();
-
-        String urbanismy = checkboxUrbanismy.getText().toString();
-        String Science = checkboxScience.getText().toString();
-        String Education = checkboxEducation.getText().toString();
-
-        if (TextUtils.isEmpty(urbanismy)){
-
-
-            checkboxScience.setError(getString(R.string.error_de_campo_obligatorio));
-            checkboxScience.requestFocus();
-            return;
-
-        }else if (checkboxEducation.isSelected()){
-
-            checkboxEducation.setError(getString(R.string.error_de_campo_obligatorio));
-            checkboxEducation.requestFocus();
-            return;
-
-        }else if (checkboxUrbanismy.isChecked()){
-
-            checkboxUrbanismy.setError(getString(R.string.error_de_campo_obligatorio));
-            checkboxUrbanismy.requestFocus();
-            return;
-        }
 
         if(TextUtils.isEmpty(nombre)){
 

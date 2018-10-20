@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="10dp"
-        android:hint="@string/Inicio_Bienvenida"
+        android:hint="@string/Welcome"
         android:id="@+id/textView_Start"
         android:gravity="center_horizontal"
         android:textColorHint="@color/colorazul"
