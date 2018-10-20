@@ -45,7 +45,7 @@ public class RellenarFormulario extends AppCompatActivity {
 
     final int COD_SELECCIONA = 1;
     public static final int CAMERA_REQUEST = 2;
-    public static final String NUMEROS = "^[0-9]+$";
+    //public static final String NUMEROS = "^[0-9]+$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,16 +105,13 @@ public class RellenarFormulario extends AppCompatActivity {
     }
 
     private void tomarFotografia() {
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAMERA_REQUEST);
-
     }
 
     @Override
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         switch (requestCode) {
             case CAMERA_REQUEST:
                 if (resultCode == RESULT_OK) {

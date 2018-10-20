@@ -21,9 +21,7 @@ import com.example.pedro.proyecto_pgl_2018.Configuracion.ConfiguracionUsuario;
 public class MenuPrincipalUsuario extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     Button button_formulary;
-
     //TextView User;
 
     @Override
@@ -32,8 +30,6 @@ public class MenuPrincipalUsuario extends AppCompatActivity
         setContentView(R.layout.activity_menu_principal_usuario);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         Button button_formulary = (Button) findViewById(R.id.button_formulary);
         button_formulary.setOnClickListener(new View.OnClickListener() {
@@ -61,13 +57,9 @@ public class MenuPrincipalUsuario extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
        // User = (TextView) findViewById(R.id.Name_User);
         //String Nombre_User = getIntent().getExtras().getString("User");
         //User.setText("BIENVENIDO " + Nombre_User + " A SU PORTAL DE INCIDENCIAS");
-
-
     }
 
     @Override
@@ -114,7 +106,6 @@ public class MenuPrincipalUsuario extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.profile) {
             Intent intent =  new Intent(getApplicationContext(), MenuSegundarioUsuario.class);
             startActivity(intent);

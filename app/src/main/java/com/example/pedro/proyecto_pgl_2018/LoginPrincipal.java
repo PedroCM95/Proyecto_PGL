@@ -27,23 +27,21 @@ public class LoginPrincipal extends AppCompatActivity {
         editText_Nombre_Login = (EditText) findViewById(R.id.editText_Nombre_Login);
         editText_password =(EditText) findViewById(R.id.editText_password);
         Boton_Login = (CardView) findViewById(R.id.Boton_Login);
-
         Boton_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Login();
             }
         });
-
         String municipality = getIntent().getExtras().getString("municipality").trim();
         Countrie.setText(municipality); // Nos sirve para al valor pasarlo mostrarlo
     }
 
     private void Login(){
 
-        String nombre = editText_Nombre_Login.getText().toString().trim();
+        String name = editText_Nombre_Login.getText().toString().trim();
         String password = editText_password.getText().toString().trim();
-        if(TextUtils.isEmpty(nombre)){
+        if(TextUtils.isEmpty(name)){
             editText_Nombre_Login.setError(getString(R.string.error_de_campo_obligatorio));
             editText_Nombre_Login.requestFocus();
             return;
@@ -55,7 +53,7 @@ public class LoginPrincipal extends AppCompatActivity {
         }
         Intent intent = new Intent(contexto, MenuPrincipalUsuario.class);
             String Nombre_User = editText_Nombre_Login.getText().toString().trim();
-            intent.putExtra("User", Nombre_User); //Toast.makeText(this,"Debes ingresar tu usuario", Toast.LENGTH_SHORT).show();
+            intent.putExtra("User", Nombre_User);
         startActivity(intent);
     }
 }

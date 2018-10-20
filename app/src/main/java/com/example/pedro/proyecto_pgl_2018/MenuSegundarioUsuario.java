@@ -66,8 +66,6 @@ public class MenuSegundarioUsuario extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
     }
 
 
@@ -132,11 +130,8 @@ public class MenuSegundarioUsuario extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             View view = inflater.inflate(R.layout.fragment_menu_segundario_usuario, container, false);
-
             TextView textViewFragmento = (TextView) view.findViewById(R.id.section_label);
-
             switch (mPosition){
                 case 0:
                     textViewFragmento.setText("Perfil");
